@@ -158,6 +158,14 @@ text-align: left;
 }
 
 </style>
+<script type="text/javascript">
+$(document).ready(
+		 function() {
+			var list = new Array();
+			list[0] =;
+			console.log(list);
+		 });
+</script>
 <body>
     <section class="cart">
         <div class="cart__information">
@@ -177,7 +185,7 @@ text-align: left;
                         <td>상품명</td>
                         <td>카트에 담은 날짜</td>
                         <td>상품수량</td>
-                        <td>상품금액</td>
+                        <td>상품가격</td>
                         <td>총금액</td>    
                     </tr>
                 </thead>
@@ -187,7 +195,7 @@ text-align: left;
 							<td><input type="checkbox"></td>
 							<%-- <td>${basket.productVO.image }</td> --%>
 							<td>image</td>
-							<td>${basket.b_no }</td>
+							<td id='b_no'>${basket.b_no}</td>
 							<td>${basket.productVO.p_no }</td>
 							<td>${basket.productVO.p_name }</td>
 							<td><fmt:formatDate value="${basket.b_regDate }"
@@ -197,9 +205,9 @@ text-align: left;
 							<td>${basket.totalPrice}</td>
 						
 						</tr>
-					</c:forEach>
+					     </c:forEach>
                 </tbody>
-                <tfoot>
+               <tfoot>
                     <tr>
                         <td><input type="checkbox"></td>
                         <td id="click" colspan="2"><button class="cart__list__optionbtn">선택상품 삭제</button>
@@ -210,9 +218,9 @@ text-align: left;
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>${list.totalPrice}</td>
+                        <td>총금액</td>
                     </tr>
-                </tfoot>
+               </tfoot>
             </form>
         </table>
         <div class="cart__mainbtns">

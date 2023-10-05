@@ -8,5 +8,4 @@ public interface BasketMapper {
 
 	public List<BasketVO> getList();
 
-	public BasketVO read(String b_no);
 }

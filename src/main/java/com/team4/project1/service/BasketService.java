@@ -10,7 +10,6 @@ public interface BasketService {
 	
 	public List<BasketVO> getList();
 
-	public BasketVO read(String b_no);
 	
 	
 }

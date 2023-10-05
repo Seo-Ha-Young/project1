@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team4.project1.domain.BasketVO;
 import com.team4.project1.domain.ProductVO;
@@ -21,10 +22,9 @@ public class ShoppingBasketController {
 	private BasketService basketService;
 	
 	@GetMapping({"/shoppingBasket", "/shoppingBasket/"})
-	public void inShoppingBasket(@PathVariable("b_no") String b_no,Model model) {
+	public void inShoppingBasket(Model model) {
 		System.out.println("장바구니로 이동");
-		BasketVO vo = basketService.read(b_no);
-
+		
 		model.addAttribute("list", basketService.getList());
 	}
 	

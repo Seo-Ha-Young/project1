@@ -24,8 +24,5 @@ public class BasketServiceImpl implements BasketService {
 		log.info("basket list");
 		return mapper.getList();
 }
-	@Override
-	public BasketVO read(String b_no) {
-		return mapper.read(b_no);
-	}
+
 }
