@@ -4,7 +4,7 @@
 <head>
 	<title>Home</title>
 	<script type="text/javascript">
-	self.location="/home/list";
+	self.location="/project1/home/list";
 	</script>
 </head>
 <body>
