@@ -7,5 +7,6 @@ import com.team4.project1.domain.BasketVO;
 public interface BasketMapper {
 
 	public List<BasketVO> getList();
+	public List<BasketVO> deleteB_no(Long b_no);
 
 }

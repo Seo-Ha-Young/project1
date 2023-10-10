@@ -9,7 +9,8 @@ import com.team4.project1.domain.ProductVO;
 public interface BasketService {
 	
 	public List<BasketVO> getList();
-
+	
+	public List<BasketVO> delete(Long b_no);
 	
 	
 }

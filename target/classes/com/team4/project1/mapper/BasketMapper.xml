@@ -45,5 +45,11 @@ from shoppingBasket s left join product p on s.p_no = p.p_no where s.p_no >0
        select quantity from shoppingBasket
    </select> -->
 
+<delete id="deleteB_no">
+	delete shoppingBasket where 1=1 and b_no in
+		<foreach collection="list" index="index" item="b_no" open="(" close=")" separator=",">
+            	#{b_no}
+            </foreach>
+</delete>
 
 </mapper>

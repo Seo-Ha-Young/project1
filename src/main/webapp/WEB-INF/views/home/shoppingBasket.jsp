@@ -159,12 +159,57 @@ text-align: left;
 
 </style>
 <script type="text/javascript">
-$(document).ready(
-		 function() {
-			var list = new Array();
-			list[0] =;
-			console.log(list);
+
+	 $(function() {
+		 $("#chkAll").click(function(){
+		 	$(".chkGrp").attr("checked", this.checked);
 		 });
+	 });
+	 
+/* 	
+	 function deleteAction(){
+	        var cnt = $("input[name='chkGrp']:checked").length;
+	        var arr = new Array();
+	        $("input[name='chkGrp']:checked").each(function() {
+	            arr.push($(this).attr('value'));
+	        });
+	        if(cnt == 0){
+	            alert("선택된 글이 없습니다.");
+	        }
+	        else{
+	            $.ajax = {
+	                type: "POST"
+	                url: "/project1/home/delete"
+	                data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
+	                dataType:"json",
+	                success: function(jdata){
+	                    if(jdata != 1) {
+	                        alert("삭제 오류");
+	                    }
+	                    else{
+	                        alert("삭제 성공");
+	                    }
+	                },
+	                error: function(){alert("서버통신 오류");}
+	            };
+	        }
+	    } */
+	  //스크립트 영역입니다 
+
+	    function deleteAction(){
+
+	        let groupList = "";
+
+	        $(".chkGrp:checked").each(function(idx, item){
+	            if(idx == 0){
+	                groupList += item.value;
+	            } else {
+	                groupList += "," + item.value;
+	            }
+
+	        });
+	    }
+		 
 </script>
 <body>
     <section class="cart">
@@ -178,7 +223,7 @@ $(document).ready(
             <form>
                 <thead>
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" id="chkAll"></td>
                         <td>상품이미지</td>
                         <td>바구니번호</td>
                         <td>상품번호</td>
@@ -192,7 +237,7 @@ $(document).ready(
                 <tbody>
                     <c:forEach items="${list}" var="basket">
 						<tr>
-							<td><input type="checkbox"></td>
+							<td><input type="checkbox" id="chk" class="chkGrp" value="<c:out value='$basket.b_no'/>"></td>
 							<%-- <td>${basket.productVO.image }</td> --%>
 							<td>image</td>
 							<td id='b_no'>${basket.b_no}</td>
@@ -210,7 +255,7 @@ $(document).ready(
                <tfoot>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td id="click" colspan="2"><button class="cart__list__optionbtn">선택상품 삭제</button>
+                        <td id="click" colspan="2"><button class="cart__list__optionbtn del" onclick="deleteAction()">선택상품 삭제</button>
                             <button class="cart__list__optionbtn">선택상품 선택</button>
                         </td>
                         <td></td>
@@ -224,7 +269,7 @@ $(document).ready(
             </form>
         </table>
         <div class="cart__mainbtns">
-            <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
+            <button class="cart__bigorderbtn left" onclick="location.href='/project1/home/list'" >쇼핑 계속하기</button>
             <button class="cart__bigorderbtn right">주문하기</button>
         </div>
     </section>
