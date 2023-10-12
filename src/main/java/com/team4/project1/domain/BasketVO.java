@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class BasketVO {
 
-	private String b_no;
+	private Long b_no;
 	private String u_id;
 	private Long p_no;
 	@Size(min = 1, max = 99999)

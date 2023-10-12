@@ -25,7 +25,7 @@ public class BasketServiceImpl implements BasketService {
 	}
 	
 	@Override
-	public List<BasketVO> delete(Long b_no) {
+	public Long delete(Long b_no) {
 		log.info("delete basket b_no");
 		return mapper.deleteB_no(b_no);
 	}

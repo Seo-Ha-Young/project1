@@ -38,15 +38,11 @@ public class ShoppingBasketController {
 
 	@PostMapping("/delete")
     @ResponseBody
-    public int deleteB_no() throws Exception{
-		List<String> grpList = new ArrayList<String>();
-		List<BasketVO> vo =basketService.getList();
-		String[] grpCode = vo.get("grpList").toString().split(",");
-
-		for(int i=0; i < grpCode.length; i++){
-			grpList.add(grpCode[i].toString());
-		}
-       }
+    public String delete(BasketVO vo) {
+		basketService.delete(vo.getB_no());
+		return "redirect:/project1/home/shoppingBasket"+vo.getU_id();
+	}
+	
 
 
 }
