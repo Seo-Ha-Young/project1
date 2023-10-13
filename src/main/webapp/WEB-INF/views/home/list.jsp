@@ -55,35 +55,23 @@ tr:last-child td:last-child {
 
 $(document).ready(function() {
 	(function() {
-		var list = '${list}';
-		var pno =list(p_no);
-		console.log(list);
-		console.log(pno);
-		$.getJSON("/home/getImageList", {p_no:pno}, function(arr){
-			console.log(arr);
-			var str = "";
-			$(arr).each(function(i, image){
-				var extensionName = image.fileName.substring(image.fileName.lastIndexOf("."));
-				var pureFileName = image.fileName.substring(0, image.fileName.lastIndexOf("."));
-				
-				//image type
-				if(image.fileType){
-					var fileCallPath = encodeURIComponent(image.uploadPath + "/"+pureFileName + "_" + image.uuid + "_s" + extensionName);	
-					
-					    str += "<li data-path='"+image.uploadPath+"' data-uuid='"+image.uuid+"' data-filename='"+image.fileName+"' data-type='"+image.fileType+"'><div>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
-						str += "</div></li>";
-				}else {
-					var fileCallPath = encodeURIComponent(image.uploadPath + "/"+pureFileName + "_" + image.uuid + "_s" + extensionName);	
-					
-				    str += "<li data-path='"+image.uploadPath+"' data-uuid='"+image.uuid+"' data-filename='"+image.fileName+"' data-type='"+image.fileType+"'><div>";
-					str += "<span>" + image.fileName + "</span><br>";
-					str += "<img src='/resources/img/attach.png'>";
-					str += "</div></li>";
-				}
-			});
-			$(".uploadResult ul").html(str);
-		});
+		$(".image_wrap").each(function(i, obj){
+			
+			const bobj = $(obj);
+			
+			if(bobj.data("p_no")){
+				const uploadPath = bobj.data("path");
+				const uuid = bobj.data("uuid");
+				const fileName = bobj.data("filename");
+				const extensionName = fileName.substring(fileName.lastIndexOf("."));
+				const pureFileName = fileName.substring(0, fileName.lastIndexOf("."));
+				const fileCallPath = encodeURIComponent(uploadPath + "/" + pureFileName + "_" + uuid + "_s" + extensionName);
+				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			} else {
+				$(this).find("img").attr('src', './resources/img/goodsNoImage.png');
+			}
+			
+		});		
 	})();
 	
 /* 	$(".uploadResult").on("click", "li", function(e) {
@@ -122,7 +110,11 @@ $(document).ready(function() {
   	<c:forEach items="${list}" var="product">
 		<tr>
 			<td><c:out value="${product.p_no}" /></td>
-			<td><div class='uploadResult'><ul></ul></div></td>
+			<td>
+				<div class="image_wrap" data-p_no="${product.imageVO[0].p_no}" data-path="${product.imageVO[0].uploadPath}" data-uuid="${product.imageVO[0].uuid}" data-filename="${product.imageVO[0].fileName}">
+					<img>
+				</div>									
+		 	</td>
 			<td><c:out value="${product.p_name}" /></td>
 			<td><c:out value="${product.price}" /></td>
 		</tr>

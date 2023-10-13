@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
-		private String p_no;
+		private Long p_no;
 		private String p_name;
 		private String p_type;
 		private String p_producer;

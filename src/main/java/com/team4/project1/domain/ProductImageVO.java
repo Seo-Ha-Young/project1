@@ -12,7 +12,7 @@ public class ProductImageVO {
 	private String fileName;
 	private boolean fileType;
 	
-	private String p_no;
+	private Long p_no;
 	    
 	
 }

@@ -70,6 +70,10 @@ td {
 	border-bottom: 1px solid lightgrey;
 	text-align: center;
 }
+table tr td input{
+	style="border: none; 
+	background: transparent;"
+}
 
 .cart__list__option {
 	vertical-align: top;
@@ -151,6 +155,7 @@ td {
 #click {
 	text-align: left;
 }
+
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -233,7 +238,7 @@ td {
 										<img>
 									</div>	 --%>
 					</td>
-					<td><input type="text" value="${basket.b_no}" disabled>
+					<td><input type="text" value="${basket.b_no}" disabled >
 						<input type="text" value="${basket.p_no}" disabled> <input
 						type="text" value="${basket.productVO.p_name}" disabled> <input
 						type="text" value="${basket.b_regDate}" disabled> <input
