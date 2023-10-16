@@ -1,5 +1,4 @@
-package com.team4.project1.controller;
-
+package com.team4.project1;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +14,6 @@ public class HeaderViewController {
 	public String headertest() {
 		return "/header/header";
 	}
-	
 	@GetMapping
 	public String requestCartId(HttpServletRequest request) {
 		String sessionid = request.getSession(true).getId();

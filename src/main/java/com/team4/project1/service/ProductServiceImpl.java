@@ -24,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> getList() {
 		log.info("get list");
+
 		List<ProductVO> list =  mapper.getList();
 		
 		list.forEach(product -> {

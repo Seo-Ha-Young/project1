@@ -55,6 +55,7 @@ tr:last-child td:last-child {
 
 $(document).ready(function() {
 	(function() {
+
 		$(".image_wrap").each(function(i, obj){
 			
 			const bobj = $(obj);

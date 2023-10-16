@@ -21,5 +21,5 @@ public class ProductVO {
 		private Date regdate;
 		
 		private List<ProductImageVO> imageVO;
-		
+
 }

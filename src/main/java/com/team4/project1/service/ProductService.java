@@ -9,6 +9,7 @@ public interface ProductService {
 	
 	public void register(ProductVO productVO);
 	
+
 	// 상품 리스트
 	public List<ProductVO> getList();
 	

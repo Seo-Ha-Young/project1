@@ -8,6 +8,7 @@ import com.team4.project1.domain.ProductVO;
 
 public interface ProductMapper {
 	
+
 	List<ProductVO> getP_no(Long p_no);
 
 	public void insert(ProductVO productVO);
