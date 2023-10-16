@@ -10,4 +10,7 @@ public interface BasketService {
 	
 	public List<BasketVO> getList();
 	
+	public Long delete(Long b_no);
+	
+	
 }

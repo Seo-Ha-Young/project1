@@ -24,7 +24,25 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> getList() {
 		log.info("get list");
-		return mapper.getList();
+
+		List<ProductVO> list =  mapper.getList();
+		
+		list.forEach(product -> {
+			
+			Long pno = product.getP_no();
+			
+			List<ProductImageVO> imageList = imageMapper.getImageList(pno);
+			
+			product.setImageVO(imageList);
+			log.info(imageList);
+
+		});
+		return list;
+	}
+	@Override
+	public List<ProductVO> getP_no(Long p_no) {
+		log.info("get p_no");
+		return mapper.getP_no(p_no);
 	}
 	@Transactional
 	@Override
@@ -44,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductImageVO> getImageList(Long p_no) {
 		log.info("get image list by p_no"+p_no);
-		return imageMapper.findByp_no(p_no);
+		return imageMapper.getImageList(p_no);
 	}
 
 }
