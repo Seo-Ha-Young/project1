@@ -1,23 +1,29 @@
 package com.team4.project1.controller;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.team4.project1.domain.ProductImageVO;
 import com.team4.project1.domain.ProductVO;
+import com.team4.project1.service.ProductImageService;
 import com.team4.project1.service.ProductService;
 
 import lombok.AllArgsConstructor;
@@ -30,12 +36,49 @@ import lombok.extern.log4j.Log4j;
 public class ProductController {
 	
 	private ProductService productService;
+	private ProductImageService imageService;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, Long p_no) {
 		log.info("list");
+		model.addAttribute("p_no", productService.getP_no(p_no));
 		model.addAttribute("list", productService.getList());
 	}
+	/* 이미지 출력 */
+	@GetMapping("/display")
+	public ResponseEntity<byte[]> getImage(String fileName){
+		
+		log.info("getImage()........" + fileName);
+		
+		File file = new File("c:\\upload\\" + fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			
+			HttpHeaders header = new HttpHeaders();
+			
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}			
+
+	/* 이미지 정보 반환 */
+	@GetMapping(value="/getImageList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductImageVO>> getImageList(Long p_no){
+		
+		log.info("getImageList.........." + p_no);
+		
+		return new ResponseEntity<List<ProductImageVO>>(imageService.getImageList(p_no), HttpStatus.OK);
+		
+	}	
 	
 	@GetMapping("/register")
 //	@PreAuthorize("isAuthenticated()")
@@ -58,11 +101,5 @@ public class ProductController {
 		
 	}
 		
-	@GetMapping(value = "/getImageList", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<ProductImageVO>> getImageList(Long p_no) {
-		log.info("getImageList : "+p_no);
-		return new ResponseEntity<>(productService.getImageList(p_no), HttpStatus.OK);
-	}
-	
+
 }

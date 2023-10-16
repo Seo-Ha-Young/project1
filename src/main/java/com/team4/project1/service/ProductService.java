@@ -9,7 +9,11 @@ public interface ProductService {
 	
 	public void register(ProductVO productVO);
 	
+
+	// 상품 리스트
 	public List<ProductVO> getList();
+	
+	public List<ProductVO> getP_no(Long p_no);
 	
 	public List<ProductImageVO> getImageList(Long p_no);
 

@@ -4,7 +4,11 @@
 <head>
 	<title>Home</title>
 	<script type="text/javascript">
+<<<<<<< HEAD
 	self.location="/home/list";
+=======
+	self.location="/project1/home/list";
+>>>>>>> refs/heads/feature
 	</script>
 </head>
 <body>

@@ -7,12 +7,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <resultMap type="com.team4.project1.domain.BasketVO" id="basketMap">
 	<result property="b_no" column="b_no"/>
 	<result property="u_id" column="u_id"/>
+	<result property="quantity" column="quantity" />
 	<result property="p_no" column="p_no"/>
-	<result property="quantity" column="quantity"/>
 	<result property="b_regDate" column="b_regdate"/>
 	<collection property="productVO" resultMap="productMap">
 	</collection>
 </resultMap>
+<!-- <resultMap type="com.team4.project1.domain.BasketItemVO" id="itemMap">
+	<result property="totalPrive" column="totalPrice"/>
+	<result property="quantity" column="quantity" />
+	<collection property="productVO" resultMap="productMap">
+	</collection>
+</resultMap> -->
 <resultMap type="com.team4.project1.domain.ProductVO" id="productMap">
 	<result property="p_no" column="p_no"/>
 	<result property="p_name" column="p_name"/>
@@ -30,7 +36,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getList" resultMap="basketMap">
 select s.b_no, s.p_no, s.quantity, s.b_regdate, p.p_name, p.price
 from shoppingBasket s left join product p on s.p_no = p.p_no where s.p_no >0
+<!-- <if test="quantity != null &amp;&amp; !quantity.equals('')">
+	AND quantity = #{quantity}
+</if> -->
 </select>
 
+<!-- <select id="quantity"   >
+       select quantity from shoppingBasket
+   </select> -->
+
+<delete id="deleteB_no">
+	delete shoppingBasket where b_no = #{b_no}
+
+</delete>
 
 </mapper>
