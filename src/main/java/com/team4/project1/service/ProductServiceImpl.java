@@ -36,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
 			log.info(imageList);
 
 		});
+		log.info(list);
 		return list;
 	}
 	@Override

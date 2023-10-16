@@ -66,7 +66,7 @@ $(document).ready(function() {
 				const extensionName = fileName.substring(fileName.lastIndexOf("."));
 				const pureFileName = fileName.substring(0, fileName.lastIndexOf("."));
 				const fileCallPath = encodeURIComponent(uploadPath + "/" + pureFileName + "_" + uuid + "_s" + extensionName);
-				$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+				$(this).find("img").attr('src', '/project1/display?fileName=' + fileCallPath);
 			} else {
 				$(this).find("img").attr('src', './resources/img/goodsNoImage.png');
 			}
