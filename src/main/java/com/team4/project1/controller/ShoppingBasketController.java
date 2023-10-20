@@ -35,9 +35,10 @@ public class ShoppingBasketController {
 
 	@PostMapping("/delete")
     @ResponseBody
-    public String delete(BasketVO vo) {
-		basketService.delete(vo.getB_no());
-		return "redirect:/project1/home/shoppingBasket"+vo.getU_id();
+    public String delete(Long b_no) {
+		log.info("dlelte : "+b_no);
+		basketService.delete(b_no);
+		return "redirect:/project1/home/shoppingBasket"+b_no;
 	}
 	
 

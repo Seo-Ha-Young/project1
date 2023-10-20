@@ -193,15 +193,16 @@ table tr td input{
 
 		
 
-		function deleteAction() {
-
+/* 		function deleteAction() {
+ */
 			$(".delete_btn").on("click", function(e) {
 				e.preventDefault();
 				const b_no = $(this).data("b_no");
 				$(".delete_b_no").val(b_no);
 				$(".quantity_delete_form").submit();
 			});
-		}
+		/* } */
+		
 	});
 </script>
 <body>
@@ -270,7 +271,7 @@ table tr td input{
 
 		</table>
 
-		<form action="/home/delete" method="post" class="quantity_delete_form">
+		<form action="/project1/home/delete" method="post" class="quantity_delete_form">
 			<input type="hidden" name="b_no" class="delete_b_no">
 		</form>
 		<div class="cart__mainbtns">
