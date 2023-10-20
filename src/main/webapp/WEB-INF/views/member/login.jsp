@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./header/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +28,8 @@
 		<input type="password" id="password" name="password"><br>
 		<input type="submit" value="로그인">
 	</form>
-	
+
 	<!-- 회원 가입 페이지로 이동 -->
-	<a href="/register">회원가입</a>
+	<a href="/project1/member/index">회원가입</a>
 </body>
 </html>

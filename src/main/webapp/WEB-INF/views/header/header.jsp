@@ -95,8 +95,18 @@ a.button:hover {
       <li><a href="#">회원 정보 수정</a></li>
       <li><a href="#">회원 목록</a></li>
       <li><a href="/project1/home/register/">제품 등록</a></li>
-     
+      
     </ul>
   </nav>
-  	 <a href="/project1/member" class="button">login</a>
+<!--   	 <a href="/project1/member/login" class="button">login</a>
+ -->  	<a class="button"  onclick="new_window();">로그인</a>
+    <script>
+      function new_window() {
+        window.open(
+          "/project1/member/login",
+          "login",
+          "width=500, height=600, top=50, left=50"
+        );
+      }
+    </script>
 </header>

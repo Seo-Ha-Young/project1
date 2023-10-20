@@ -75,19 +75,7 @@ $(document).ready(function() {
 		});		
 	})();
 	
-/* 	$(".uploadResult").on("click", "li", function(e) {
-		console.log("view image");
-		var liObj = $(this);
-		var extensionName = liObj.data("filename").substring(liObj.data("filename").lastIndexOf("."));
-		var pureFileName = liObj.data("filename").substring(0, liObj.data("filename").lastIndexOf("."));
-		var path = encodeURIComponent(liObj.data("path")+"/"+pureFileName+"_"+liObj.data("uuid")+extensionName);
-		if(liObj.data("type")){
-			showImage(path.replace(new RegExp(/\\/g), "/"));
-		} else {
-			//download
-			self.location ="/download?fileName="+path;
-		}
-	}); */
+
 	
 	
 
