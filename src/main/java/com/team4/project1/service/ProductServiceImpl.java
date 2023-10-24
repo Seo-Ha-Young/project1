@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductVO getProductInfo(Long p_no) {
 		log.info("p_no: "+p_no);
-		ProductVO productInfo = ProductMapper.getProductInfo(p_no);
+		ProductVO productInfo = mapper.getProductInfo(p_no);
 		log.info("productInfo: "+productInfo);
 		productInfo.setImageVO(imageMapper.getImageList(p_no));;
 		return productInfo;
