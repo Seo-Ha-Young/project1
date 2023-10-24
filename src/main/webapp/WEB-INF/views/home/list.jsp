@@ -76,9 +76,6 @@ $(document).ready(function() {
 	})();
 	
 
-	
-	
-
 });
 </script>
 
@@ -92,20 +89,24 @@ $(document).ready(function() {
       <th>상품이미지</th>
       <th>상품이름</th>
       <th>가격</th>
-
     </tr>
   </thead>
   <tbody>
   	<c:forEach items="${list}" var="product">
 		<tr>
+
 			<td><c:out value="${product.p_no}" /></td>
 			<td>
 				<div class="image_wrap" data-p_no="${product.imageVO[0].p_no}" data-path="${product.imageVO[0].uploadPath}" data-uuid="${product.imageVO[0].uuid}" data-filename="${product.imageVO[0].fileName}">
 					<img>
 				</div>									
 		 	</td>
-			<td><c:out value="${product.p_name}" /></td>
-			<td><c:out value="${product.price}" /></td>
+			<td>
+				<a class='move' href='<c:out value="${product.p_no}" /> ' >
+					<c:out value="${product.p_name}" />
+				</a>
+			</td>
+			<td><c:out value="${product.price}" /></td>		
 		</tr>
 	</c:forEach>
   </tbody>

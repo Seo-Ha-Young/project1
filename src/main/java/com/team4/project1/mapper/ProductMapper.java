@@ -17,5 +17,11 @@ public interface ProductMapper {
 	
 	//@Select("select * from product where p_no >0")
 	public List<ProductVO> getList();
+
+	/* 상품 정보 */
+	static ProductVO getProductInfo(Long p_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,13 +37,21 @@ public class ShoppingBasketController {
 	}
 
 	@PostMapping("/delete")
-    @ResponseBody
     public String delete(Long b_no) {
 		log.info("dlelte : "+b_no);
 		basketService.delete(b_no);
-		return "redirect:/project1/home/shoppingBasket"+b_no;
+		return "redirect:/home/shoppingBasket/";
 	}
 	
-
+//	@PostMapping("/shoppingBasket/add")
+//	@ResponseBody
+//	public String addCartPOST(CartDTO cart, HttpServletRequest request) {
+//
+//		// 카트 등록
+//		
+//		int result = cartService.addCart(cart);
+//		
+//		return result + "";
+//	}	
 
 }
