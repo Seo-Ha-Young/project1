@@ -37,6 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="fileType" column="filetype"></result>
 </resultMap>
 
+<insert id="addBasket">
+	insert into shoppingBasket(p_no, quantity)
+	values(#{p_no}, #{quantity})
+</insert>
+
 <select id="getList" resultMap="basketMap">
 select s.b_no, s.p_no, s.quantity, s.b_regdate, p.p_name, p.price, pi.uuid, pi.uploadpath, pi.filename, pi.filetype
 from shoppingBasket s left join product p on s.p_no = p.p_no 
@@ -48,5 +53,10 @@ from shoppingBasket s left join product p on s.p_no = p.p_no
 	delete shoppingBasket where b_no = #{b_no}
 
 </delete>
+
+<select id="checkBasket" resultMap="basketMap">
+	select * from shoppingBasket
+	where p_no = #{p_no}
+</select>
 
 </mapper>

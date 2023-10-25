@@ -31,4 +31,21 @@ public class BasketServiceImpl implements BasketService {
 		return mapper.deleteB_no(b_no);
 	}
 
+	@Override
+	public int addBasket(BasketVO basket) {
+		BasketVO checkBasket = mapper.checkBasket(basket);
+		
+		if(checkBasket != null) {
+			return 2;
+		}
+		
+		// 장바구니 등록 & 에러 시 0반환
+		try {
+			return mapper.addBasket(basket);
+		} catch (Exception e) {
+			return 0;
+		}	
+		
+	}
+
 }

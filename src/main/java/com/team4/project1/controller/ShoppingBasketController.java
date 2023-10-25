@@ -43,15 +43,15 @@ public class ShoppingBasketController {
 		return "redirect:/home/shoppingBasket/";
 	}
 	
-//	@PostMapping("/shoppingBasket/add")
-//	@ResponseBody
-//	public String addCartPOST(CartDTO cart, HttpServletRequest request) {
-//
-//		// 카트 등록
-//		
-//		int result = cartService.addCart(cart);
-//		
-//		return result + "";
-//	}	
+	@PostMapping("/shoppingBasket/add")
+	public String addBasketPOST(BasketVO basket) {
+
+		log.info("장바구니 등록 : "+basket);
+		// 카트 등록
+		
+		basketService.addBasket(basket);
+		
+		return "redirect:/home/shoppingBasket/";
+	}	
 
 }

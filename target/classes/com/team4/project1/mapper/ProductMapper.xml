@@ -31,6 +31,7 @@ values (#{p_no}, #{p_name}, #{p_type}, #{p_producer}, #{p_size}, #{price},
 </insert>
 
 <select id="getProductInfo" resultType="com.team4.project1.domain.ProductVO">
-	select p_no,p_name,p_type, p_producer,p_size,price,p_content, stock, sale from product where p_no = ${p_no}
+	select p_no,p_name,p_type, p_producer,p_size,price,p_content, stock, sale, regdate
+	from product where p_no = #{p_no}
 </select>
 </mapper>

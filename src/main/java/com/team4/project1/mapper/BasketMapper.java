@@ -10,4 +10,8 @@ public interface BasketMapper {
 
 	public Long deleteB_no(Long b_no);
 
+	public BasketVO checkBasket(BasketVO basket);
+
+	public int addBasket(BasketVO basket) throws Exception;
+
 }

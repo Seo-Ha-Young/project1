@@ -248,7 +248,7 @@ table tr td input{
 					 <input	type="text" value="${basket.productVO.p_name}" disabled>
 					 </td>
 					 <td>
-					 	 <input type="text" value="${basket.b_regDate}" disabled>
+					 	 <fmt:formatDate pattern="yyyy년MM월dd일" value="${basket.b_regDate}" />
 					 </td>
 					 <td>
 					 	 <input	type="number" value="${basket.quantity}" disabled>

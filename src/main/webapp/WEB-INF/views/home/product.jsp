@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@include file="../header/header.jsp"%>
 
 
@@ -70,7 +71,7 @@ $(document).ready(function() {
 					<p>
 					<b>상품 판매유무</b> : ${productInfo.sale}
 				<p>
-					<b>상품 등록날짜</b> : ${productInfo.refdate}
+					<b>상품 등록날짜</b> : <fmt:formatDate pattern="yyyy년MM월dd일" value="${productInfo.regdate}" />
 			<%-- 	<h4>${book.unitPrice}원</h4>
 				<br>
 				<form:form name="addForm" method="put">

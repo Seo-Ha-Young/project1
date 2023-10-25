@@ -109,8 +109,8 @@ public class ProductController {
 		log.info("productsDetailGET()..........");
 		
 		model.addAttribute("productInfo", productService.getProductInfo(p_no));
-		
-		return "/product";
+		log.info(model);
+		return "/home/test";
 	}	
 
 }
