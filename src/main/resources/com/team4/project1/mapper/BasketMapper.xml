@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <insert id="addBasket">
 insert into shoppingBasket(b_no,u_id ,p_no,quantity)
-values (shoppingBasket_seq.nextval, #{u_id}, #{p_no}, #{quantity});
+values (shoppingBasket_seq.nextval, #{u_id}, #{p_no}, #{quantity})
 </insert>
 
 <select id="getList" resultMap="basketMap">
