@@ -145,34 +145,46 @@ $(document).ready(function(){
 
 
 // 수량 버튼 조작
-let quantity = $(".quantity_input").val();
-$(".plus_btn").on("click", function(){
-	$(".quantity_input").val(++quantity);
-});
-$(".minus_btn").on("click", function(){
-	if(quantity > 1){
-		$(".quantity_input").val(--quantity);	
-	}
-});	
+	var quantity = $(".quantity_input").val();
+	$(".plus_btn").on("click", function(){
+		$(".quantity_input").val(++quantity);
+	});
+	$(".minus_btn").on("click", function(){
+		if(quantity > 1){
+			$(".quantity_input").val(--quantity);	
+		}
+	});	
 
 // 서버로 전송할 데이터
-const form = {
-		p_no : '${productInfo.p_no}',
-		quantity : ''
-}
+	var form = {
+			p_no : '${productInfo.p_no}',
+			u_id : 'user0',
+			quantity : ''
+	}
 // 장바구니 추가 버튼
 	$(".btn_basket").on("click", function(e){
 		form.quantity = $(".quantity_input").val();
 		$.ajax({
-			url: '/project1/home/shoppingBasket/add/',
+			url: '/project1/home/add/',
 			type: 'POST',
 			data: form,
 			success: function(result){
-				console(result);
+				basketAlert(result);
 			}
 		})
 	});
 	
+	function basketAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가를 하지 못하였습니다.");
+		} else if(result == '1'){
+			alert("장바구니에 추가되었습니다.");
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어져 있습니다.");
+		} else if(result == '5'){
+			alert("로그인이 필요합니다.");	
+		}
+	}
 
 	/* 바로구매 버튼 */
 	$(".btn_buy").on("click", function(){

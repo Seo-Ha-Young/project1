@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team4.project1.domain.BasketVO;
+import com.team4.project1.domain.ProductVO;
 import com.team4.project1.service.BasketService;
+import com.team4.project1.service.ProductService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -25,7 +27,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/home/*")
 public class ShoppingBasketController {
-
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private BasketService basketService;
 
@@ -43,14 +46,17 @@ public class ShoppingBasketController {
 		return "redirect:/home/shoppingBasket/";
 	}
 	
-	@PostMapping("/shoppingBasket/add")
-	public String addBasketPOST(BasketVO basket) {
-
-		log.info("장바구니 등록 : "+basket);
+	@PostMapping("/add")
+	public String addBasketPOST(ProductVO vo, BasketVO basket) {
+		log.info(vo.getP_no());
+		
+		ProductVO product = productService.getProductInfo(vo.getP_no());
+		log.info("product :"+product);
 		// 카트 등록
+		basket.setProductVO(product);
+		log.info("장바구니 등록 내용 : "+basket);
 		
 		basketService.addBasket(basket);
-		
 		return "redirect:/home/shoppingBasket/";
 	}	
 

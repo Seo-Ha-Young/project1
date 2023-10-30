@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team4.project1.domain.BasketVO;
+import com.team4.project1.domain.ProductVO;
 import com.team4.project1.mapper.BasketMapper;
 
 import lombok.Setter;
@@ -32,16 +33,19 @@ public class BasketServiceImpl implements BasketService {
 	}
 
 	@Override
-	public int addBasket(BasketVO basket) {
-		BasketVO checkBasket = mapper.checkBasket(basket);
-		
+	public int addBasket(BasketVO vo) {
+		log.info("서비스로 넘어온 장바구니 정보 : "+vo);
+		BasketVO checkBasket = mapper.checkBasket(vo);
+		log.info("checkBasket : "+checkBasket);
 		if(checkBasket != null) {
 			return 2;
 		}
-		
 		// 장바구니 등록 & 에러 시 0반환
 		try {
-			return mapper.addBasket(basket);
+			log.info("장바구니 등록");
+			 int basket = mapper.addBasket(vo);
+			log.info(basket);
+			return basket;
 		} catch (Exception e) {
 			return 0;
 		}	

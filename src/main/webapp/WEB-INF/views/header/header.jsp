@@ -10,7 +10,7 @@ header {
 }
 
 nav {
-  position: absolute;
+  position: relative;
   top: 10;
   right: 150;
   padding: 20px;
