@@ -98,7 +98,7 @@ public class ProductController {
 		productVO.setP_type(p_type);
 		productVO.setP_size(p_size);
 		attributes.addFlashAttribute("result", productVO.getP_no()); //일회성
-		return "redirect:/home/product";
+		return "redirect:/home/list";
 		
 	}
 		

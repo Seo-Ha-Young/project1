@@ -23,12 +23,12 @@
 	 			<tbody>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>아이디</h5>></td>
-	 					<td><input class="form-control" type="text" id="userID" name="userID"  maxLength="20"></td>
+	 					<td><input class="form-control" type="text" id="id" name="id"  maxLength="20"></td>
 	 					<td style="width: 110px;"><button class="btn btn-primary" onclick="registerCheckFunction();" type="button">중복 체크</button></td>
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>비밀번호</h5>></td>
-	 					<td colspan="2"><input class="form-control" type="password" id="userPassword1" name="userPassword1" maxLength="20"></td>
+	 					<td colspan="2"><input class="form-control" type="password" id="pw" name="pw" maxLength="20"></td>
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>비밀번호 확인</h5>></td>
@@ -36,11 +36,11 @@
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>이름</h5>></td>
-	 					<td colspan="2"><input class="form-control" type="text" id="userName" name="userName" maxLength="20"></td>
+	 					<td colspan="2"><input class="form-control" type="text" id="name" name="name" maxLength="20"></td>
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>나이</h5>></td>
-	 					<td colspan="2"><input class="form-control" type="text" id="userAge" name="userAge" maxLength="20"></td>
+	 					<td colspan="2"><input class="form-control" type="text" id="age" name="age" maxLength="20"></td>
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>성별</h5></td>
@@ -48,20 +48,28 @@
 	 						<div class="form-group" style="text-align: center; margin: 0 auto;">
 	 							<div class="btn-group" data-toggle="buttons">
 	 							<label class="btn btn-primary active">
-	 								<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
+	 								<input type="radio" name=gender" autocomplete="off" value="man" checked>남자
 	 							</label>
 	 						</div>
 	 						<div class="form-group" style="text-align: center; margin: 0 auto;">
 	 							<label class="btn btn-primary active">
-	 								<input type="radio" name="userGender" autocomplete="off" value="여자">여자
+	 								<input type="radio" name="gender" autocomplete="off" value="woman">여자
 	 							</label>
 	 							</div>
 	 						</div>
 	 					</td>
 	 				</tr>
+	 					<tr>
+	 					<td style="width: 110px;"><h5>전화번호</h5>></td>
+	 					<td colspan="2"><input class="form-control" type="tel" id="p_number" name="p_number" maxLength="20"></td>
+	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>이메일</h5>></td>
-	 					<td colspan="2"><input class="form-control" type="email" id="userEmail" name="userEmail" maxLength="20"></td>
+	 					<td colspan="2"><input class="form-control" type="email" id="email" name="email" maxLength="20"></td>
+	 				</tr>
+	 				<tr>
+	 					<td style="width: 110px;"><h5>주소</h5>></td>
+	 					<td colspan="2"><input class="form-control" type="text" id="address" name="address"></td>
 	 				</tr>
 	 				<tr>
 	 					<td style="text-align: Left" colspan="3"><input class="btn btn-primary pull-right" type="submit" value="회원가입"></td>
