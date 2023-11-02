@@ -44,16 +44,36 @@ public class MemberController {
 	}
 //로그인
 	@PostMapping("/login")
-	public void login(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+	public String login(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
 		HttpSession session = request.getSession();
+		String pw = "";
+		String encodePw = "";
+
+		MemberVO vo = memberservice.memberLogin(member);
 		
-//		MemberVO vo = memberservice.memberLogin(member);
-//		
-//		if(vo != null) {
-//			
-//		}
+		if(vo != null) {
+			log.info("시도한 사람 정보:"+vo);
+			pw = member.getPw();
+			encodePw = vo.getPw();
+			if(true == pwEncoder.matches(pw, encodePw)) {
+				vo.setPw("");
+				session.setAttribute("member", vo);
+				log.info("로그인 성공");
+				log.info("로그인 한 사람 정보 :"+vo);
+				return null;
+			} else {
+				rttr.addFlashAttribute("result", 0);
+				log.info("비밀번호 틀림");
+				return "redirect:/project1/member/login";
+			}	
+		} else {
+			rttr.addFlashAttribute("result", 0);
+			log.info("가입정보 없음");
+			return "redirect:/project1/member/login";
+		}
 	}
 	
+//계정 생성
 	@PostMapping("/userRegister")
 	public String addMember(MemberVO member) throws Exception{
 		String pw = "";

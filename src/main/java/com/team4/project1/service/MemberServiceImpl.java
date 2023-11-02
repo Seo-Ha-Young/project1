@@ -23,4 +23,11 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+
+	@Override
+	public MemberVO memberLogin(MemberVO member) throws Exception {
+		// TODO Auto-generated method stub
+		return membermapper.memberLogin(member);
+	}
+
 }
