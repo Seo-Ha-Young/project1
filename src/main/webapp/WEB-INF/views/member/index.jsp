@@ -47,14 +47,14 @@
 	 					<td colspan="2">
 	 						<div class="form-group" style="text-align: center; margin: 0 auto;">
 	 							<div class="btn-group" data-toggle="buttons">
-	 							<label class="btn btn-primary active">
-	 								<input type="radio" name=gender" autocomplete="off" value="man" checked>남자
-	 							</label>
-	 						</div>
-	 						<div class="form-group" style="text-align: center; margin: 0 auto;">
-	 							<label class="btn btn-primary active">
-	 								<input type="radio" name="gender" autocomplete="off" value="woman">여자
-	 							</label>
+	 								<label class="btn btn-primary active">
+	 									<input type="radio" name="gender" autocomplete="off" value="man" checked>남자
+	 								</label>
+	 							</div>
+	 							<div class="form-group" style="text-align: center; margin: 0 auto;">
+	 								<label class="btn btn-primary active">
+	 									<input type="radio" name="gender" autocomplete="off" value="woman">여자
+	 								</label>
 	 							</div>
 	 						</div>
 	 					</td>
