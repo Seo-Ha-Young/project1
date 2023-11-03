@@ -57,7 +57,7 @@ public class ShoppingBasketController {
 		log.info("장바구니 등록 내용 : "+basket);
 		
 		basketService.addBasket(basket);
-		return "redirect:/home/shoppingBasket/";
+		return "/home/shoppingBasket";
 	}	
 
 }

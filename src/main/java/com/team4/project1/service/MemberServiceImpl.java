@@ -30,4 +30,10 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.memberLogin(member);
 	}
 
+
+	@Override
+	public int idCheck(String id) {
+		return membermapper.idCheck(id);
+	}
+
 }

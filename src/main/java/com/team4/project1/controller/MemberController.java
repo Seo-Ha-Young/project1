@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team4.project1.domain.MemberVO;
@@ -85,5 +86,21 @@ public class MemberController {
 		memberservice.addMember(member);
 		
 		return "return:/project1/member/login";
+	}
+	
+	@PostMapping("/memberIdChk")
+	public String memberIdChk(String id, ) throws Exception {
+		log.info("아이디 중복 검사");
+		int resultNum = memberservice.idCheck(id);
+		log.info("결과 : "+resultNum);
+		String result = "";
+		if(resultNum == 0) {
+			result = "success";
+			log.info(result);
+		} else {
+			result = "fail";
+			log.info(result);
+		}
+		return result;
 	}
 }

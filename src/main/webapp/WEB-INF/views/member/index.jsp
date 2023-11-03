@@ -5,11 +5,52 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/custom.css">
+	<style>
+	/* 중복아이디 존재하지 않는경우 */
+	.id_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.id_input_re_2{
+		color : red;
+		display : none;
+	}
+	</style>
+<!-- 	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/custom.css"> -->
 	<title>회원가입 페이지</title>
 	<Script src="https://code.jquery.com/jquery-3.1.1.min.js"></Script>
-	<script src="js/bootstrap.js"></script>
+<!-- 	<script src="js/bootstrap.js"></script> -->
+	<script>
+		$(document).ready(function(){
+		
+			$(".checkId").click(function(){
+				var Id = $("#id").val();
+				console.log(Id);
+				var data = {id : Id} // '컨트롤에 넘길 데이터 이름' : '데이터(id에 입력되는 값)'
+				console.log(data);
+				$.ajax({
+					type : "post",
+					url : "/project1/member/memberIdChk",
+					data : data,
+					dataType: 'json',
+					success : function(result){
+						console.log("성공 여부" + result);
+						if(result != 'fail'){
+							$('.id_input_re_1').css("display","inline-block");
+							$('.id_input_re_2').css("display", "none");	
+						} else {
+							$('.id_input_re_2').css("display","inline-block");
+							$('.id_input_re_1').css("display", "none");
+						}	
+					}// success 종료
+				}); // ajax 종료	
+			});
+			
+			
+		});
+	</script>
 </head>
 <body>
 	<div class="container">
@@ -23,8 +64,12 @@
 	 			<tbody>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>아이디</h5>></td>
-	 					<td><input class="form-control" type="text" id="id" name="id"  maxLength="20"></td>
-	 					<td style="width: 110px;"><button class="btn btn-primary" onclick="registerCheckFunction();" type="button">중복 체크</button></td>
+	 					<td><input class="form-control" type="text" class="input_id" id="id" name="id"  maxLength="20"></td>
+	 					<td style="width: 110px;">
+	 						<button class="btn btn-primary checkId" type="button">중복 체크</button>
+	 						<span class="id_input_re_1">사용 가능한 아이디입니다.</span>	
+							<span class="id_input_re_2">아이디가 이미 존재합니다.</span>	
+ 						</td>
 	 				</tr>
 	 				<tr>
 	 					<td style="width: 110px;"><h5>비밀번호</h5>></td>

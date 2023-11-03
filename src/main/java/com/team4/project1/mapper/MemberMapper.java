@@ -6,4 +6,6 @@ public interface MemberMapper {
 	public void addMember(MemberVO vo);
 
 	public MemberVO memberLogin(MemberVO member);
+
+	public int idCheck(String id);
 }

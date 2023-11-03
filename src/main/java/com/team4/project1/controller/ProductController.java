@@ -110,7 +110,7 @@ public class ProductController {
 		
 		model.addAttribute("productInfo", productService.getProductInfo(p_no));
 		log.info(model);
-		return "/home/test";
+		return "/home/product";
 	}	
 
 }
