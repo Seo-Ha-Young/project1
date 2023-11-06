@@ -47,6 +47,7 @@ public class ShoppingBasketController {
 	}
 	
 	@PostMapping("/add")
+	@ResponseBody
 	public String addBasketPOST(ProductVO vo, BasketVO basket) {
 		log.info(vo.getP_no());
 		
@@ -55,9 +56,8 @@ public class ShoppingBasketController {
 		// 카트 등록
 		basket.setProductVO(product);
 		log.info("장바구니 등록 내용 : "+basket);
-		
-		basketService.addBasket(basket);
-		return "/home/shoppingBasket";
+		int result = basketService.addBasket(basket);
+		return result + "";
 	}	
 
 }

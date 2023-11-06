@@ -164,10 +164,12 @@ $(document).ready(function(){
 // 장바구니 추가 버튼
 	$(".btn_basket").on("click", function(e){
 		form.quantity = $(".quantity_input").val();
+		console.log(form.quantity);
 		$.ajax({
 			url: '/project1/home/add/',
 			type: 'POST',
 			data: form,
+			dataType:"text",
 			success: function(result){
 				console.log("result:"+result);
 				basketAlert(result);
