@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,16 +90,19 @@ public class MemberController {
 	}
 	
 	@PostMapping("/memberIdChk")
-	public String memberIdChk(String id, ) throws Exception {
+	@ResponseBody
+	public String memberIdChk(String id, Model model) throws Exception {
 		log.info("아이디 중복 검사");
 		int resultNum = memberservice.idCheck(id);
 		log.info("결과 : "+resultNum);
 		String result = "";
 		if(resultNum == 0) {
 			result = "success";
+			model.addAttribute("result", result);
 			log.info(result);
 		} else {
 			result = "fail";
+			model.addAttribute("result", result);
 			log.info(result);
 		}
 		return result;

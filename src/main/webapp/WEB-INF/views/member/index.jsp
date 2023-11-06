@@ -34,7 +34,7 @@
 					type : "post",
 					url : "/project1/member/memberIdChk",
 					data : data,
-					dataType: 'json',
+					dataType: 'text',
 					success : function(result){
 						console.log("성공 여부" + result);
 						if(result != 'fail'){
