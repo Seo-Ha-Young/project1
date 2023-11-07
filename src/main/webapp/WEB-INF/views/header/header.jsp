@@ -86,27 +86,37 @@ a.button:hover {
     </style> 
 
 <header>
-
-  <h1>쇼핑몰 이름</h1>
-  <nav>
-    <ul>
-      <li><a href="/project1/home/list/">제품 목록</a></li>
-      <li><a href="/project1/home/shoppingBasket/">장바구니</a></li>
-      <li><a href="#">회원 정보 수정</a></li>
-      <li><a href="#">회원 목록</a></li>
-      <li><a href="/project1/home/register/">제품 등록</a></li>
-      
-    </ul>
-  </nav>
-<!--   	 <a href="/project1/member/login" class="button">login</a>
- -->  	<a class="button"  onclick="new_window();">로그인</a>
-    <script>
-      function new_window() {
-        window.open(
-          "/project1/member/login",
-          "login",
-          "width=500, height=600, top=50, left=50"
-        );
-      }
-    </script>
+ <c:if test="${member_authority == null}">
+	  <h1>쇼핑몰 이름</h1>
+	  <nav>
+	    <ul>
+	      <li><a href="/project1/home/list/">제품 목록</a></li>
+	    </ul>
+	  </nav>
+	  <a class="button"  onclick="location.href='/project1/member/login';">로그인</a>
+  </c:if>
+<c:if test="${member_authority!=null}">
+	  <h1>쇼핑몰 이름</h1>
+	  <nav>
+	    <ul>
+	      <li><a href="/project1/home/list/">제품 목록</a></li>
+	      <li><a href="/project1/home/shoppingBasket/">장바구니</a></li>
+	      <li><a href="#">회원 정보 수정</a></li>
+	    </ul>
+	  </nav>
+	  <a href="/project1/member/logout.do">로그아웃</a>
+<c:if test="${member_authority=='admin'}">
+	  <h1>쇼핑몰 이름</h1>
+	  <nav>
+	    <ul>
+	      <li><a href="/project1/home/list/">제품 목록</a></li>
+	      <li><a href="/project1/home/shoppingBasket/">장바구니</a></li>
+	      <li><a href="#">회원 정보 수정</a></li>
+	      <li><a href="#">회원 목록</a></li>
+	      <li><a href="/project1/home/register/">제품 등록</a></li>
+	    </ul>
+	  </nav>
+	  <a href="/project1/member/logout.do">로그아웃</a>
+</c:if>
+</c:if>
 </header>

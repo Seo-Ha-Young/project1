@@ -59,19 +59,21 @@ public class MemberController {
 			encodePw = vo.getPw();
 			if(true == pwEncoder.matches(pw, encodePw)) {
 				vo.setPw("");
-				session.setAttribute("member", vo);
+				session.setAttribute("member_id", vo.getId());
+				session.setAttribute("member_name", vo.getName());
+				session.setAttribute("member_authority", vo.getAuthority());
 				log.info("로그인 성공");
 				log.info("로그인 한 사람 정보 :"+vo);
-				return null;
+				return "redirect:/home/list";
 			} else {
 				rttr.addFlashAttribute("result", 0);
 				log.info("비밀번호 틀림");
-				return "redirect:/project1/member/login";
+				return "redirect:/member/login";
 			}	
 		} else {
 			rttr.addFlashAttribute("result", 0);
 			log.info("가입정보 없음");
-			return "redirect:/project1/member/login";
+			return "redirect:/member/login";
 		}
 	}
 	
@@ -88,7 +90,7 @@ public class MemberController {
 		
 		return "return:/project1/member/login";
 	}
-	
+//회원가입계정 중복검사
 	@PostMapping("/memberIdChk")
 	@ResponseBody
 	public String memberIdChk(String id, Model model) throws Exception {
@@ -107,4 +109,16 @@ public class MemberController {
 		}
 		return result;
 	}
+//로그아웃
+	@PostMapping("/logout.do")
+	@ResponseBody
+	public String Logout(HttpServletRequest request) throws Exception {
+		log.info("logout");
+ 	HttpSession session = request.getSession();
+    	
+    	session.invalidate();
+    	
+    	return "redirect:/home/list";
+	}
+	
 }
