@@ -110,14 +110,14 @@ public class MemberController {
 		return result;
 	}
 //로그아웃
-	@PostMapping("/logout.do")
+	@PostMapping("/logout")
 	@ResponseBody
 	public String Logout(HttpServletRequest request) throws Exception {
 		log.info("logout");
  	HttpSession session = request.getSession();
     	
     	session.invalidate();
-    	
+    	log.info(session);
     	return "redirect:/home/list";
 	}
 	

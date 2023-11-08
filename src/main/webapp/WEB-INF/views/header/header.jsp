@@ -84,7 +84,22 @@ a.button:hover {
 }
 
     </style> 
-
+<script>
+$(document).ready(function(e) {
+	$("#logout").click(function(){
+		//alert("버튼 작동");
+		$.ajax({
+			type:"POST",
+			url:"/project1/member/logout",
+			success:function(data){
+				alert("로그아웃 성공");
+				document.location.reload();	 
+			} 
+		}); // ajax 
+	});
+	
+});
+</script>
 <header>
  <c:if test="${member_authority == null}">
 	  <h1>쇼핑몰 이름</h1>
@@ -96,6 +111,7 @@ a.button:hover {
 	  <a class="button"  onclick="location.href='/project1/member/login';">로그인</a>
   </c:if>
 <c:if test="${member_authority!=null}">
+<c:if test="${member_authority=='user'}">
 	  <h1>쇼핑몰 이름</h1>
 	  <nav>
 	    <ul>
@@ -104,7 +120,8 @@ a.button:hover {
 	      <li><a href="#">회원 정보 수정</a></li>
 	    </ul>
 	  </nav>
-	  <a href="/project1/member/logout.do">로그아웃</a>
+	  <a class='button' id='logout'>로그아웃</a>
+	  	  </c:if>
 <c:if test="${member_authority=='admin'}">
 	  <h1>쇼핑몰 이름</h1>
 	  <nav>
@@ -116,7 +133,7 @@ a.button:hover {
 	      <li><a href="/project1/home/register/">제품 등록</a></li>
 	    </ul>
 	  </nav>
-	  <a href="/project1/member/logout.do">로그아웃</a>
+	  <a class='button' id='logout'>로그아웃</a>
 </c:if>
 </c:if>
 </header>
