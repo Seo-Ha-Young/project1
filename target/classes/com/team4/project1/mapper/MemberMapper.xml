@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.team4.project1.mapper.MemberMapper">
 
 <insert id="addMember">
-insert into member(id, pw, name, age, gender, p_number, email, address)
+insert into member(id, pw, name, age, gender, p_number, email, address, authority)
 values (#{id}, #{pw}, #{name}, #{age}, #{gender},
-							 #{p_number}, #{email}, #{address})
+							 #{p_number}, #{email}, #{address}, #{authority})
 </insert>
 
 <select id="memberLogin" resultType="com.team4.project1.domain.MemberVO">

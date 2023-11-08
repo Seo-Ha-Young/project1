@@ -88,7 +88,7 @@ public class MemberController {
 		log.info("가입 정보 :" + member);
 		memberservice.addMember(member);
 		
-		return "return:/project1/member/login";
+		return "redirect:/member/login";
 	}
 //회원가입계정 중복검사
 	@PostMapping("/memberIdChk")

@@ -19,6 +19,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void addMember(MemberVO vo) {
+		vo.setAuthority("user");
 		membermapper.addMember(vo);
 
 	}
