@@ -21,10 +21,13 @@ public class BasketServiceImpl implements BasketService {
 	private BasketMapper mapper;
 
 	@Override
-	public List<BasketVO> getList() {
+	public List<BasketVO> getList(String memberId) {
 		log.info("basket list");
-		return mapper.getList();
+		List<BasketVO> basketVOs = mapper.getList(memberId);
+		return null;
 	}
+	
+	
 	
 	@Override
 	public Long delete(Long b_no) {
