@@ -8,7 +8,10 @@ import com.team4.project1.domain.ProductVO;
 
 public interface BasketService {
 	
-	public List<BasketVO> getList(String memberId);
+	public List<BasketVO> getList();
+	
+	public List<BasketVO> getBasket(String memberId);
+
 	
 	public Long delete(Long b_no);
 

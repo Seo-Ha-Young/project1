@@ -33,19 +33,25 @@ public class ShoppingBasketController {
 	@Autowired
 	private BasketService basketService;
 
-	@GetMapping({ "/shoppingBasket", "/shoppingBasket/" })
-	public void inShoppingBasket(Model model) {
-		log.info("장바구니로 이동");
-
-		model.addAttribute("list", basketService.getList());
-	}
 	
-	@GetMapping("/shoppingBasket/{memberid}")
-	public void inShoppingBasket(@PathVariable("memberId") String memberId,Model model) {
-		log.info("장바구니로 이동");
-
-		model.addAttribute("list", basketService.getList(memberId));
-	}
+	
+	  @GetMapping({ "/shoppingBasket", "/shoppingBasket/" })
+	  public void inShoppingBasket(Model model) {
+		  log.info("장바구니로 이동");
+		  model.addAttribute("list", basketService.getList());
+	 }
+	 
+	 
+	
+	/*
+	 * @GetMapping("/shoppingBasket/{memberid}") public String
+	 * inShoppingBasket(@PathVariable("memberId") String memberId,Model model) {
+	 * log.info("장바구니로 이동");
+	 * 
+	 * model.addAttribute("list", basketService.getList(memberId));
+	 * 
+	 * return "/home/shoppingBasket"; }
+	 */
 
 	@PostMapping("/delete")
     public String delete(Long b_no) {

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team4.project1.domain.BasketVO;
+import com.team4.project1.domain.ProductImageVO;
 import com.team4.project1.domain.ProductVO;
 import com.team4.project1.mapper.BasketMapper;
+import com.team4.project1.mapper.ProductImageMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,14 +21,28 @@ public class BasketServiceImpl implements BasketService {
 
 	@Setter(onMethod_ = @Autowired)
 	private BasketMapper mapper;
-
-	@Override
-	public List<BasketVO> getList(String memberId) {
-		log.info("basket list");
-		List<BasketVO> basketVOs = mapper.getList(memberId);
-		return null;
-	}
 	
+	@Setter(onMethod_ = @Autowired)
+	private ProductImageMapper imageMapper;
+	
+	@Override
+	public List<BasketVO> getList() {
+		log.info("basket list");
+		List<BasketVO> basketVOs = mapper.getList();
+
+		return basketVOs;
+	}
+	@Override
+	public List<BasketVO> getBasket(String memberId) {
+		log.info("basket list");
+		List<BasketVO> basketVOs = mapper.getBasket(memberId);
+		for(BasketVO vo : basketVOs) {
+			Long p_no = vo.getP_no();
+			List<ProductImageVO> imageVOs = imageMapper.getImageList(p_no);
+			
+		}
+		return basketVOs;
+	}
 	
 	
 	@Override
