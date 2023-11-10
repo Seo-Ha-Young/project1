@@ -75,21 +75,6 @@ $(document).ready(function() {
 		});		
 	})();
 	
-/* 	$(".uploadResult").on("click", "li", function(e) {
-		console.log("view image");
-		var liObj = $(this);
-		var extensionName = liObj.data("filename").substring(liObj.data("filename").lastIndexOf("."));
-		var pureFileName = liObj.data("filename").substring(0, liObj.data("filename").lastIndexOf("."));
-		var path = encodeURIComponent(liObj.data("path")+"/"+pureFileName+"_"+liObj.data("uuid")+extensionName);
-		if(liObj.data("type")){
-			showImage(path.replace(new RegExp(/\\/g), "/"));
-		} else {
-			//download
-			self.location ="/download?fileName="+path;
-		}
-	}); */
-	
-	
 
 });
 </script>
@@ -104,20 +89,24 @@ $(document).ready(function() {
       <th>상품이미지</th>
       <th>상품이름</th>
       <th>가격</th>
-
     </tr>
   </thead>
   <tbody>
   	<c:forEach items="${list}" var="product">
 		<tr>
+
 			<td><c:out value="${product.p_no}" /></td>
 			<td>
 				<div class="image_wrap" data-p_no="${product.imageVO[0].p_no}" data-path="${product.imageVO[0].uploadPath}" data-uuid="${product.imageVO[0].uuid}" data-filename="${product.imageVO[0].fileName}">
 					<img>
 				</div>									
 		 	</td>
-			<td><c:out value="${product.p_name}" /></td>
-			<td><c:out value="${product.price}" /></td>
+			<td>
+				<a class='move' href='<c:out value="${product.p_no}" /> ' >
+					<c:out value="${product.p_name}" />
+				</a>
+			</td>
+			<td><c:out value="${product.price}" /></td>		
 		</tr>
 	</c:forEach>
   </tbody>

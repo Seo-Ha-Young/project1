@@ -10,7 +10,12 @@ public interface BasketService {
 	
 	public List<BasketVO> getList();
 	
+	public List<BasketVO> getBasket(String u_Id);
+
+	
 	public Long delete(Long b_no);
+
+	public int addBasket(BasketVO basket);
 	
 	
 }

@@ -71,8 +71,13 @@ td {
 	text-align: center;
 }
 table tr td input{
-	style="border: none; 
-	background: transparent;"
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	boder-left:0px; 
+	boder-bottom:0px;
+	text-align: center;
+	white-space: normal;
 }
 
 .cart__list__option {
@@ -159,51 +164,45 @@ table tr td input{
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		(function() {
 
+			$(".image_wrap").each(function(i, obj){
+				
+				const bobj = $(obj);
+				
+				if(bobj.data("p_no")){
+					const uploadPath = bobj.data("path");
+					const uuid = bobj.data("uuid");
+					const fileName = bobj.data("filename");
+					const extensionName = fileName.substring(fileName.lastIndexOf("."));
+					const pureFileName = fileName.substring(0, fileName.lastIndexOf("."));
+					const fileCallPath = encodeURIComponent(uploadPath + "/" + pureFileName + "_" + uuid + "_s" + extensionName);
+					$(this).find("img").attr('src', '/project1/display?fileName=' + fileCallPath);
+				} else {
+					$(this).find("img").attr('src', './resources/img/goodsNoImage.png');
+				}
+				
+			});		
+		})();
 		$(function() {
 			$("#chkAll").click(function() {
 				$(".chkGrp").attr("checked", this.checked);
 			});
 		});
 
-		/* 	
-		 function deleteAction(){
-		 var cnt = $("input[name='chkGrp']:checked").length;
-		 var arr = new Array();
-		 $("input[name='chkGrp']:checked").each(function() {
-		 arr.push($(this).attr('value'));
-		 });
-		 if(cnt == 0){
-		 alert("선택된 글이 없습니다.");
-		 }
-		 else{
-		 $.ajax = {
-		 type: "POST"
-		 url: "/project1/home/delete"
-		 data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
-		 dataType:"json",
-		 success: function(jdata){
-		 if(jdata != 1) {
-		 alert("삭제 오류");
-		 }
-		 else{
-		 alert("삭제 성공");
-		 }
-		 },
-		 error: function(){alert("서버통신 오류");}
-		 };
-		 }
-		 } */
-		//스크립트 영역입니다 
-		function deleteAction() {
 
+		
+
+/* 		function deleteAction() {
+ */
 			$(".delete_btn").on("click", function(e) {
 				e.preventDefault();
 				const b_no = $(this).data("b_no");
 				$(".delete_b_no").val(b_no);
 				$(".quantity_delete_form").submit();
 			});
-		}
+		/* } */
+		
 	});
 </script>
 <body>
@@ -218,6 +217,7 @@ table tr td input{
 			<input type="checkbox" id="chkAll">
 		</div>
 		<table class="cart__list">
+		   <thead>
 			<tr>
 				<th></th>
 				<th>상품이미지</th>
@@ -229,38 +229,49 @@ table tr td input{
 				<th>상품가격</th>
 				<th>총금액</th>
 			</tr>
-		</table>
-		<table>
+		   </thead>
 			<c:forEach items="${list}" var="basket">
+			<tbody>
 				<tr>
-					<td class="td_width_2">
-						<%-- 	<div class="image_wrap" data-bookid="${ci.imageList[0].bookId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
-										<img>
-									</div>	 --%>
+					<td class="td_width_2"> 
+						<div class="image_wrap" data-p_no="${basket.productVO.imageVO[0].p_no}" data-path="${basket.productVO.imageVO[0].uploadPath}" data-uuid="${basket.productVO.imageVO[0].uuid}" data-filename="${basket.productVO.imageVO[0].fileName}">
+							<img>
+						</div>
 					</td>
-					<td><input type="text" value="${basket.b_no}" disabled >
-						<input type="text" value="${basket.p_no}" disabled> <input
-						type="text" value="${basket.productVO.p_name}" disabled> <input
-						type="text" value="${basket.b_regDate}" disabled> <input
-						type="number" value="${basket.quantity}" disabled> <input
-						type="number" value="${basket.productVO.price}" disabled>
+					<td>
+						<input type="text" value="${basket.b_no}" disabled >
+					</td>
+					<td>
+						<input type="text" value="${basket.p_no}" disabled>
+					</td>
+					<td>
+					 <input	type="text" value="${basket.productVO.p_name}" disabled>
+					 </td>
+					 <td>
+					 	 <fmt:formatDate pattern="yyyy년MM월dd일" value="${basket.b_regDate}" />
+					 </td>
+					 <td>
+					 	 <input	type="number" value="${basket.quantity}" disabled>
+					 </td>
+					 <td>
+					  	 <input type="number" value="${basket.productVO.price}" disabled>
+					 </td>
+					 <td>
 						<input type="number" value="${basket.totalPrice}" disabled>
 					</td>
-					<%-- <td>${basket.productVO.image }</td> --%>
-
-
-
-
+				</tr>
+			</tbody>
+			<tfooter>
 					<td><input type="checkbox">
 					<button class="delete_btn" data-b_no="${basket.b_no}">선택상품
 							삭제</button>
 						<button class="cart__list__optionbtn">선택상품 선택</button> 총금액</td>
-				</tr>
+			</tfooter>
 			</c:forEach>
 
 		</table>
 
-		<form action="/home/delete" method="post" class="quantity_delete_form">
+		<form action="/project1/home/delete" method="post" class="quantity_delete_form">
 			<input type="hidden" name="b_no" class="delete_b_no">
 		</form>
 		<div class="cart__mainbtns">

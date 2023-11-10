@@ -13,12 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<collection property="productVO" resultMap="productMap">
 	</collection>
 </resultMap>
-<!-- <resultMap type="com.team4.project1.domain.BasketItemVO" id="itemMap">
-	<result property="totalPrive" column="totalPrice"/>
-	<result property="quantity" column="quantity" />
-	<collection property="productVO" resultMap="productMap">
-	</collection>
-</resultMap> -->
+
 <resultMap type="com.team4.project1.domain.ProductVO" id="productMap">
 	<result property="p_no" column="p_no"/>
 	<result property="p_name" column="p_name"/>
@@ -27,27 +22,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="p_size" column="p_size"/>
 	<result property="price" column="price"/>
 	<result property="p_content" column="p_content"/>
-	<result property="image" column="image"/>
 	<result property="stock" column="stock"/>
 	<result property="sale" column="sale"/>
 	<result property="regdate" column="regdate"/>
+	<collection property="imageVO" resultMap="productImageMap">
+	</collection>
 </resultMap>
 
+<resultMap type="com.team4.project1.domain.ProductImageVO" id="productImageMap">
+	<result property="p_no" column="p_no"></result>
+	<result property="uuid" column="uuid"></result>
+	<result property="uploadPath" column="uploadpath"></result>
+	<result property="fileName" column="filename"></result>
+	<result property="fileType" column="filetype"></result>
+</resultMap>
+
+<insert id="addBasket">
+insert into shoppingBasket(b_no,u_id ,p_no,quantity)
+values (shoppingBasket_seq.nextval, #{u_id}, #{p_no}, #{quantity})
+</insert>
+
 <select id="getList" resultMap="basketMap">
-select s.b_no, s.p_no, s.quantity, s.b_regdate, p.p_name, p.price
-from shoppingBasket s left join product p on s.p_no = p.p_no where s.p_no >0
-<!-- <if test="quantity != null &amp;&amp; !quantity.equals('')">
-	AND quantity = #{quantity}
-</if> -->
+select s.b_no, s.p_no, s.u_id, s.quantity, s.b_regdate, p.p_name, p.price, pi.uuid, pi.uploadpath, pi.filename, pi.filetype
+from shoppingBasket s left join product p on s.p_no = p.p_no 
+	 				  left join productimage pi on s.p_no = pi.p_no 
+	 				  left join member m on m.id = s.u_id
+	 				  where s.p_no >0
 </select>
 
-<!-- <select id="quantity"   >
-       select quantity from shoppingBasket
-   </select> -->
+<select id="getBasket" resultMap="basketMap">
+select s.b_no, s.p_no, s.u_id, s.quantity, s.b_regdate, p.p_name, p.price, pi.uuid, pi.uploadpath, pi.filename, pi.filetype
+from shoppingBasket s left join product p on s.p_no = p.p_no 
+	 				  left join productimage pi on s.p_no = pi.p_no 
+	 				  left join member m on m.id = s.u_id
+	 				  where m.id = #{member_id}
+</select>
 
 <delete id="deleteB_no">
 	delete shoppingBasket where b_no = #{b_no}
 
 </delete>
+
+<select id="checkBasket" resultMap="basketMap">
+	select * from shoppingBasket
+	where p_no = #{p_no} and u_id = #{u_id}
+</select>
 
 </mapper>
