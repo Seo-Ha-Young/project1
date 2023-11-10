@@ -82,7 +82,7 @@ h1 {
 						
 						</div>
 							<c:if test="${member_authority=='admin'}">
-								<a class="btn_delete">상품 삭제</a>
+								<a class="btn_delete" data-p_no="${productInfo.p_no}">상품 삭제</a>
 							</c:if>
 					</div>
 				</div>
@@ -110,9 +110,17 @@ $(document).ready(function(){
 
 		bobj.find("img").attr('src', '/project1/display?fileName=' + fileCallPath);
 	} else {
-		bobj.find("img").attr('src', '/resources/img/goodsNoImage.png');
+		bobj.find("img").attr('src', '../../resources/img/goodsNoImage.png');
 	}	
-	
+	//상품 삭제
+	$(".btn_delete").on("click", function(e){
+		e.preventDefault();
+		const p_no = $(this).data("p_no");
+		console.log(p_no);
+		$(".delete_p_no").val(p_no);
+		$(".quantity_delete_form").submit();
+		
+	});
 	
 	
 });	//$(document).ready(function(){
@@ -170,13 +178,7 @@ $(document).ready(function(){
 		$(".order_form").submit();
 	});
 
-	$(".btn_delete").on("click", function(e){
-		e.preventDefault();
-		const p_no = $(this).data("p_no");
-		$(".delete_p_no").val(p_no);
-		$(".quantity_delete_form").submit();
-		
-	});
+
 	
 </script>
 

@@ -69,7 +69,7 @@ $(document).ready(function() {
 				const fileCallPath = encodeURIComponent(uploadPath + "/" + pureFileName + "_" + uuid + "_s" + extensionName);
 				$(this).find("img").attr('src', '/project1/display?fileName=' + fileCallPath);
 			} else {
-				$(this).find("img").attr('src', './resources/img/goodsNoImage.png');
+				$(this).find("img").attr('src', '../../resources/img/goodsNoImage.png');
 			}
 			
 		});		

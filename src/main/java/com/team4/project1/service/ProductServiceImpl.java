@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 		productVO.getImageVO().forEach(image -> {
 			image.setP_no(productVO.getP_no());
 			imageMapper.insert(image);
-			log.info(image);
+			log.info("image 내용: "+image);
 		});
 	}
 	
@@ -76,6 +76,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Long delete(Long p_no) {
 		log.info("delete product "+p_no);
+		log.info("삭제할 상품 이미지 정보: "+imageMapper.getImageList(p_no));
+		imageMapper.deleteAll(p_no);
 		return mapper.deleteP_no(p_no);
 	}
 
