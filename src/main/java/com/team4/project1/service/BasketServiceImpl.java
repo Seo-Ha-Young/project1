@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team4.project1.domain.BasketVO;
+import com.team4.project1.domain.MemberVO;
 import com.team4.project1.domain.ProductImageVO;
 import com.team4.project1.domain.ProductVO;
 import com.team4.project1.mapper.BasketMapper;
+import com.team4.project1.mapper.MemberMapper;
 import com.team4.project1.mapper.ProductImageMapper;
 
 import lombok.Setter;
@@ -25,6 +27,7 @@ public class BasketServiceImpl implements BasketService {
 	@Setter(onMethod_ = @Autowired)
 	private ProductImageMapper imageMapper;
 	
+	
 	@Override
 	public List<BasketVO> getList() {
 		log.info("basket list");
@@ -33,9 +36,10 @@ public class BasketServiceImpl implements BasketService {
 		return basketVOs;
 	}
 	@Override
-	public List<BasketVO> getBasket(String memberId) {
+	public List<BasketVO> getBasket(String u_id) {
 		log.info("basket list");
-		List<BasketVO> basketVOs = mapper.getBasket(memberId);
+		
+		List<BasketVO> basketVOs = mapper.getBasket(u_id);
 		for(BasketVO vo : basketVOs) {
 			Long p_no = vo.getP_no();
 			List<ProductImageVO> imageVOs = imageMapper.getImageList(p_no);

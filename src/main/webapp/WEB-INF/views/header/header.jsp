@@ -136,4 +136,5 @@ $(document).ready(function(e) {
 	  <a class='button' id='logout'>로그아웃</a>
 </c:if>
 </c:if>
+
 </header>

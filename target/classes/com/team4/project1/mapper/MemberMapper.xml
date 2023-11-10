@@ -15,8 +15,14 @@ values (#{id}, #{pw}, #{name}, #{age}, #{gender},
 select * from member where id = #{id}
 </select>
 
+<select id="getId"  resultType="com.team4.project1.domain.MemberVO">
+select id from member
+</select>
+
 <select id="idCheck" resultType="int">
 	select count(*) from member where id = #{id}
 </select>
+
+
 
 </mapper>
