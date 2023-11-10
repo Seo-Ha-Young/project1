@@ -103,7 +103,7 @@ public class ProductController {
 	}
 		
 	/* 상품 상세 */
-	@GetMapping("/list/{p_no}")
+	@GetMapping("/{p_no}")
 	public String productsDetailGET(@PathVariable("p_no") Long p_no, Model model) {
 		
 		log.info("productsDetailGET()..........");
