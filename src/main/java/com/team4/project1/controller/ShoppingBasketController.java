@@ -64,9 +64,9 @@ public class ShoppingBasketController {
 //	  }
 //	 
 
-	@PostMapping("/delete")
+	@PostMapping("/basketDelete")
     public String delete(Long b_no) {
-		log.info("dlelte : "+b_no);
+		log.info("basketDelete : "+b_no);
 		basketService.delete(b_no);
 		return "redirect:/home/shoppingBasket/";
 	}

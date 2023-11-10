@@ -20,4 +20,7 @@ public interface ProductService {
 
 	public ProductVO getProductInfo(Long p_no);
 
+
+	public Long delete(Long p_no);
+
 }

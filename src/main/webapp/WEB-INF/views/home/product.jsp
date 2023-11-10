@@ -59,7 +59,14 @@ h1 {
 						</div>						
 					</div>			
 					<div class="line">
-					</div>	
+					</div>			
+					<div class="content_middle">
+						<div class="product_content">
+							${productInfo.p_content}
+						</div>
+					</div>
+					<div class="line">
+					</div>		
 					<div class="button">						
 						<div class="button_quantity">
 							주문수량
@@ -72,52 +79,19 @@ h1 {
 						<div class="button_set">
 							<a class="btn_basket">장바구니 담기</a>
 							<a class="btn_buy">바로구매</a>
+						
 						</div>
+							<c:if test="${member_authority=='admin'}">
+								<a class="btn_delete">상품 삭제</a>
+							</c:if>
 					</div>
 				</div>
 			</div>
-			<div class="line">
-			</div>				
-			<div class="content_middle">
-				<div class="product_content">
-					${productInfo.p_content}
-				</div>
-			</div>
-			<div class="line">
-			</div>				
-	
-				
 			
-				<div class="repy_pageInfo_div"> 
-					<ul class="pageMaker">
-					<!--					
-						<li class="pageMaker_btn prev">
-							<a>이전</a>
-						</li>
-						<li class="pageMaker_btn">
-							<a>1</a>
-						</li>
-						<li class="pageMaker_btn">
-							<a>2</a>
-						</li>
-						<li class="pageMaker_btn active">
-							<a>3</a>
-						</li>													
-						<li class="pageMaker_btn next">
-							<a>다음</a>
-						</li>
-					 -->						
-					</ul>
-				</div>
-					
+		<form action="/project1/home/productDelete" method="post" class="quantity_delete_form">
+			<input type="hidden" name="p_no" class="delete_p_no">
+		</form>	
 				
-			</div>
-			<!-- 주문 form -->
-			<%-- <form action="/order/${member.memberId}" method="get" class="order_form">
-				<input type="hidden" name="orders[0].bookId" value="${goodsInfo.bookId}">
-				<input type="hidden" name="orders[0].bookCount" value="">
-			</form>	 --%>
-		</div>
 		
 
 <script>
@@ -158,7 +132,7 @@ $(document).ready(function(){
 // 서버로 전송할 데이터
 	var form = {
 			p_no : '${productInfo.p_no}',
-			u_id : 'user0',
+			u_id : '${member_id}',
 			quantity : ''
 	}
 // 장바구니 추가 버튼
@@ -196,46 +170,13 @@ $(document).ready(function(){
 		$(".order_form").submit();
 	});
 
-
-			
-/* 			/* 페이지 버튼 
-			
-			let reply_pageMaker = '';	
-			
-				/* prev 
-				if(pf.prev){
-					let prev_num = pf.pageStart -1;
-					reply_pageMaker += '<li class="pageMaker_btn prev">';
-					reply_pageMaker += '<a href="'+ prev_num +'">이전</a>';
-					reply_pageMaker += '</li>';	
-				}
-				/* numbre btn 
-				for(let i = pf.pageStart; i < pf.pageEnd+1; i++){
-					reply_pageMaker += '<li class="pageMaker_btn ';
-					if(pf.cri.pageNum === i){
-						reply_pageMaker += 'active';
-					}
-					reply_pageMaker += '">';
-					reply_pageMaker += '<a href="'+i+'">'+i+'</a>';
-					reply_pageMaker += '</li>';
-				}
-				/* next 
-				if(pf.next){
-					let next_num = pf.pageEnd +1;
-					reply_pageMaker += '<li class="pageMaker_btn next">';
-					reply_pageMaker += '<a href="'+ next_num +'">다음</a>';
-					reply_pageMaker += '</li>';	
-				}	
-				
-				console.log(reply_pageMaker);
-			$(".pageMaker").html(reply_pageMaker);				
-			
-		}	
-	}*/
+	$(".btn_delete").on("click", function(e){
+		e.preventDefault();
+		const p_no = $(this).data("p_no");
+		$(".delete_p_no").val(p_no);
+		$(".quantity_delete_form").submit();
 		
-	
-	
-	
+	});
 	
 </script>
 

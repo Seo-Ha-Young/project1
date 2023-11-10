@@ -34,4 +34,8 @@ values (#{p_no}, #{p_name}, #{p_type}, #{p_producer}, #{p_size}, #{price},
 	select p_no,p_name,p_type, p_producer,p_size,price,p_content, stock, sale, regdate
 	from product where p_no = #{p_no}
 </select>
+
+<delete id="delete_p_no">
+	delete product where p_no = #{p_no}
+</delete>
 </mapper>

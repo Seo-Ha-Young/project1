@@ -73,5 +73,10 @@ public class ProductServiceImpl implements ProductService {
 		productInfo.setImageVO(imageMapper.getImageList(p_no));;
 		return productInfo;
 	}
+	@Override
+	public Long delete(Long p_no) {
+		log.info("delete product "+p_no);
+		return mapper.deleteP_no(p_no);
+	}
 
 }

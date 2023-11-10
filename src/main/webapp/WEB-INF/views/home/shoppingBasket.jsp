@@ -271,13 +271,13 @@ table tr td input{
 
 		</table>
 
-		<form action="/project1/home/delete" method="post" class="quantity_delete_form">
+		<form action="/project1/home/basketDelete" method="post" class="quantity_delete_form">
 			<input type="hidden" name="b_no" class="delete_b_no">
 		</form>
 		<div class="cart__mainbtns">
 			<button class="cart__bigorderbtn left"
 				onclick="location.href='/project1/home/list'">쇼핑 계속하기</button>
-			<button class="cart__bigorderbtn right">주문하기</button>
+			<button class="cart__bigorderbtn right" onclick="location.href='/project1/home/order'">주문하기</button>
 		</div>
 	</section>
 </body>

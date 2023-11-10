@@ -9,6 +9,8 @@ import com.team4.project1.domain.ProductVO;
 public interface ProductMapper {
 	
 
+	Long deleteP_no = null;
+
 	List<ProductVO> getP_no(Long p_no);
 
 	public void insert(ProductVO productVO);
@@ -20,5 +22,7 @@ public interface ProductMapper {
 
 	/* 상품 정보 */
 	public ProductVO getProductInfo(Long p_no);
+
+	public Long deleteP_no(Long p_no);
 	
 }

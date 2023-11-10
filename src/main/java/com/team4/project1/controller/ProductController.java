@@ -112,5 +112,13 @@ public class ProductController {
 		log.info(model);
 		return "/home/product";
 	}	
+	
+	@PostMapping("/productDelete")
+	public String delete(Long p_no) {
+		log.info("productDelete: "+p_no);
+		productService.delete(p_no);
+		
+		return "redirect:/home/list";
+	}
 
 }
