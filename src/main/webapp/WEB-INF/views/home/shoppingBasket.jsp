@@ -169,7 +169,7 @@ table tr td input{
 			$(".image_wrap").each(function(i, obj){
 				
 				const bobj = $(obj);
-				
+				console.log(bobj);
 				if(bobj.data("p_no")){
 					const uploadPath = bobj.data("path");
 					const uuid = bobj.data("uuid");
@@ -177,9 +177,15 @@ table tr td input{
 					const extensionName = fileName.substring(fileName.lastIndexOf("."));
 					const pureFileName = fileName.substring(0, fileName.lastIndexOf("."));
 					const fileCallPath = encodeURIComponent(uploadPath + "/" + pureFileName + "_" + uuid + "_s" + extensionName);
+					if(fileName == ''){
+						$(this).find("img").attr('src', '../../resources/img/goodsNoImage.png');
+					} else {
+						console.log(fileName);
+
 					$(this).find("img").attr('src', '/project1/display?fileName=' + fileCallPath);
+					}
 				} else {
-					$(this).find("img").attr('src', './resources/img/goodsNoImage.png');
+					$(this).find("img").attr('src', '../../resources/img/goodsNoImage.png');
 				}
 				
 			});		

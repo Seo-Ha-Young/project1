@@ -59,7 +59,7 @@ $(document).ready(function() {
 		$(".image_wrap").each(function(i, obj){
 			
 			const bobj = $(obj);
-			
+			console.log(bobj);
 			if(bobj.data("p_no")){
 				const uploadPath = bobj.data("path");
 				const uuid = bobj.data("uuid");

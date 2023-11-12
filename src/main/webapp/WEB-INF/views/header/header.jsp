@@ -133,7 +133,7 @@ $(document).ready(function(e) {
 	      <li><a href="/project1/home/register/">제품 등록</a></li>
 	    </ul>
 	  </nav>
-	  <a class='button' id='logout'>로그아웃</a>
+	  <a class='button' id='logout' href="/project1/home/list/">로그아웃</a>
 </c:if>
 </c:if>
 
