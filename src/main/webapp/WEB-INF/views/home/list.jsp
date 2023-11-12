@@ -102,7 +102,7 @@ $(document).ready(function() {
 				</div>									
 		 	</td>
 			<td>
-				<a class='move' href='<c:out value="${product.p_no}" /> ' >
+				<a class='move' href="/project1/home/list/${product.p_no}" >
 					<c:out value="${product.p_name}" />
 				</a>
 			</td>
