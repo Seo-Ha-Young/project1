@@ -21,9 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.team4.project1.domain.BasketVO;
 import com.team4.project1.domain.ProductImageVO;
 import com.team4.project1.domain.ProductVO;
+import com.team4.project1.service.BasketService;
 import com.team4.project1.service.ProductImageService;
 import com.team4.project1.service.ProductService;
 
@@ -38,6 +39,7 @@ public class ProductController {
 	
 	private ProductService productService;
 	private ProductImageService imageService;
+	private BasketService basketService;
 	
 	@GetMapping("/list")
 	public void list(Model model, Long p_no) {
@@ -114,9 +116,16 @@ public class ProductController {
 	}	
 	
 	@PostMapping("/productDelete")
-	public String delete(Long p_no) {
+	public String delete(Long p_no, Model model) {
 		log.info("productDelete: "+p_no);
-		productService.delete(p_no);
+		List<BasketVO> vo  = basketService.chkBasket(p_no);
+		log.info("삭제할 상품이 장바구니에 추가되어 있는지? : "+vo);
+		if(vo != null) {
+			return "deledeX";
+		} else {
+			productService.delete(p_no);
+			model.addAttribute(null, vo);
+		}
 		
 		return "redirect:/home/list";
 	}

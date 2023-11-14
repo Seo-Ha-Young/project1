@@ -68,4 +68,9 @@ from shoppingBasket s left join product p on s.p_no = p.p_no
 	where p_no = #{p_no} and u_id = #{u_id}
 </select>
 
+<select id="checkBasketP_no" resultMap="basketMap">
+	select * from shoppingBasket
+	where p_no = #{p_no}
+</select>
+
 </mapper>

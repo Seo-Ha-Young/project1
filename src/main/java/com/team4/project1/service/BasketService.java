@@ -12,6 +12,7 @@ public interface BasketService {
 	
 	public List<BasketVO> getBasket(String u_Id);
 
+	public List<BasketVO> chkBasket(Long p_no);
 	
 	public Long delete(Long b_no);
 

@@ -74,5 +74,10 @@ public class BasketServiceImpl implements BasketService {
 		}	
 		
 	}
+	@Override
+	public List<BasketVO> chkBasket(Long p_no) {
+		log.info("장바구니에 있는 상품인지 확인");
+		return mapper.checkBasketP_no(p_no);
+	}
 
 }

@@ -112,6 +112,7 @@ $(document).ready(function(){
 	} else {
 		bobj.find("img").attr('src', '../../resources/img/goodsNoImage.png');
 	}	
+	
 	//상품 삭제
 	$(".btn_delete").on("click", function(e){
 		e.preventDefault();
@@ -119,7 +120,7 @@ $(document).ready(function(){
 		console.log(p_no);
 		$(".delete_p_no").val(p_no);
 		$(".quantity_delete_form").submit();
-		
+
 	});
 	
 	
