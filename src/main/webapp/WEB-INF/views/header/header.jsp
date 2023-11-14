@@ -93,7 +93,7 @@ $(document).ready(function(e) {
 			url:"/project1/member/logout",
 			success:function(data){
 				alert("로그아웃 성공");
-				document.location.reload();	 
+				document.location.href="../../home/list"
 			} 
 		}); // ajax 
 	});
